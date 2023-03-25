@@ -1,0 +1,20 @@
+{
+  "template": "https://github.com/PrefectHQ/prefect-collection-template",
+  "commit": "e11a3be195f24f60ed3f564dfccb40170ee7c3fa",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Manoj Babu Katragadda",
+      "email": "manojbabuiit@gmail.com",
+      "github_organization": "arthur_dent",
+      "collection_name": "prefect-spark-on-k8s-operator",
+      "collection_slug": "prefect_spark_on_k8s_operator",
+      "collection_short_description": "Prefect integrations for orchestrating and monitoring apache spark jobs on kubernetes using spark-on-k8s-operator.",
+      "_copy_without_render": [
+        ".github/workflows/*.yml"
+      ],
+      "_template": "https://github.com/PrefectHQ/prefect-collection-template"
+    }
+  },
+  "directory": null
+}
