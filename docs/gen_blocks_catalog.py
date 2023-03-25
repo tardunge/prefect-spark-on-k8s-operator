@@ -17,8 +17,7 @@ COLLECTION_SLUG = "prefect_spark_on_k8s_operator"
 def find_module_blocks():
     blocks = get_registry_for_type(Block)
     collection_blocks = [
-        block
-        for block in blocks.values()
+        block for block in blocks.values()
         if to_qualified_name(block).startswith(COLLECTION_SLUG)
     ]
     module_blocks = {}
@@ -36,35 +35,30 @@ def insert_blocks_catalog(generated_file):
     if len(module_blocks) == 0:
         return
     generated_file.write(
-        dedent(
-            f"""
+        dedent(f"""
             Below is a list of Blocks available for registration in
             `prefect-spark-on-k8s-operator`.
 
             To register blocks in this module to
             [view and edit them](https://docs.prefect.io/ui/blocks/)
             on Prefect Cloud, first [install the required packages](
-            https://arthur_dent.github.io/prefect-spark-on-k8s-operator/#installation),
+            https://tardunge.github.io/prefect-spark-on-k8s-operator/#installation),
             then
             ```bash
             prefect block register -m {COLLECTION_SLUG}
             ```
-            """  # noqa
-        )
-    )
+            """
+
+               # noqa
+               ))
     generated_file.write(
         "Note, to use the `load` method on Blocks, you must already have a block document "  # noqa
         "[saved through code](https://docs.prefect.io/concepts/blocks/#saving-blocks) "  # noqa
-        "or [saved through the UI](https://docs.prefect.io/ui/blocks/).\n"
-    )
+        "or [saved through the UI](https://docs.prefect.io/ui/blocks/).\n")
     for module_nesting, block_names in module_blocks.items():
         module_path = f"{COLLECTION_SLUG}." + " ".join(module_nesting)
-        module_title = (
-            module_path.replace(COLLECTION_SLUG, "")
-            .lstrip(".")
-            .replace("_", " ")
-            .title()
-        )
+        module_title = (module_path.replace(
+            COLLECTION_SLUG, "").lstrip(".").replace("_", " ").title())
         generated_file.write(f"## [{module_title} Module][{module_path}]\n")
         for block_name in block_names:
             block_obj = from_qualified_name(f"{module_path}.{block_name}")
@@ -75,8 +69,7 @@ def insert_blocks_catalog(generated_file):
                 f"[{block_name}][{module_path}.{block_name}]\n\n{block_description}\n\n"
             )
             generated_file.write(
-                dedent(
-                    f"""
+                dedent(f"""
                     To load the {block_name}:
                     ```python
                     from prefect import flow
@@ -88,14 +81,11 @@ def insert_blocks_catalog(generated_file):
 
                     my_flow()
                     ```
-                    """
-                )
-            )
+                    """))
         generated_file.write(
             f"For additional examples, check out the [{module_title} Module]"
             f"(../examples_catalog/#{module_nesting[-1]}-module) "
-            f"under Examples Catalog.\n"
-        )
+            f"under Examples Catalog.\n")
 
 
 blocks_catalog_path = Path("blocks_catalog.md")

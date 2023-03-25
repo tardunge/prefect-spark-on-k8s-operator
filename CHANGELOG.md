@@ -25,4 +25,4 @@ Released on ????? ?th, 20??.
 
 ### Added
 
-- `task_name` task - [#1](https://github.com/arthur_dent/prefect-spark-on-k8s-operator/pull/1)
+- `task_name` task - [#1](https://github.com/tardunge/prefect-spark-on-k8s-operator/pull/1)

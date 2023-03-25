@@ -22,7 +22,7 @@ class Sparkonk8soperatorBlock(Block):
     _block_type_name = "spark on k8s operator"
     # replace this with a relevant logo; defaults to Prefect logo
     _logo_url = "https://images.ctfassets.net/gm98wzqotmnx/08yCE6xpJMX9Kjl5VArDS/c2ede674c20f90b9b6edeab71feffac9/prefect-200x200.png?h=250"  # noqa
-    _documentation_url = "https://arthur_dent.github.io/prefect-spark-on-k8s-operator/blocks/#prefect-spark-on-k8s-operator.blocks.Sparkonk8soperatorBlock"  # noqa
+    _documentation_url = "https://tardunge.github.io/prefect-spark-on-k8s-operator/blocks/#prefect-spark-on-k8s-operator.blocks.Sparkonk8soperatorBlock"  # noqa
 
     value: str = Field("The default value", description="The value to store.")
 

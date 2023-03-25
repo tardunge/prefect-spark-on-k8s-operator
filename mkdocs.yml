@@ -1,6 +1,6 @@
 site_name: prefect-spark-on-k8s-operator
-site_url: https://arthur_dent.github.io/prefect-spark-on-k8s-operator
-repo_url: https://github.com/arthur_dent/prefect-spark-on-k8s-operator
+site_url: https://tardunge.github.io/prefect-spark-on-k8s-operator
+repo_url: https://github.com/tardunge/prefect-spark-on-k8s-operator
 edit_uri: edit/main/docs/
 theme:
   name: material

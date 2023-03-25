@@ -5,12 +5,12 @@
     <!--- <br> -->
     <a href="https://pypi.python.org/pypi/prefect-spark-on-k8s-operator/" alt="PyPI version">
         <img alt="PyPI" src="https://img.shields.io/pypi/v/prefect-spark-on-k8s-operator?color=0052FF&labelColor=090422"></a>
-    <a href="https://github.com/arthur_dent/prefect-spark-on-k8s-operator/" alt="Stars">
-        <img src="https://img.shields.io/github/stars/arthur_dent/prefect-spark-on-k8s-operator?color=0052FF&labelColor=090422" /></a>
+    <a href="https://github.com/tardunge/prefect-spark-on-k8s-operator/" alt="Stars">
+        <img src="https://img.shields.io/github/stars/tardunge/prefect-spark-on-k8s-operator?color=0052FF&labelColor=090422" /></a>
     <a href="https://pypistats.org/packages/prefect-spark-on-k8s-operator/" alt="Downloads">
         <img src="https://img.shields.io/pypi/dm/prefect-spark-on-k8s-operator?color=0052FF&labelColor=090422" /></a>
-    <a href="https://github.com/arthur_dent/prefect-spark-on-k8s-operator/pulse" alt="Activity">
-        <img src="https://img.shields.io/github/commit-activity/m/arthur_dent/prefect-spark-on-k8s-operator?color=0052FF&labelColor=090422" /></a>
+    <a href="https://github.com/tardunge/prefect-spark-on-k8s-operator/pulse" alt="Activity">
+        <img src="https://img.shields.io/github/commit-activity/m/tardunge/prefect-spark-on-k8s-operator?color=0052FF&labelColor=090422" /></a>
     <br>
     <a href="https://prefect-community.slack.com" alt="Slack">
         <img src="https://img.shields.io/badge/slack-join_community-red.svg?color=0052FF&labelColor=090422&logo=slack" /></a>
@@ -18,7 +18,7 @@
         <img src="https://img.shields.io/badge/discourse-browse_forum-red.svg?color=0052FF&labelColor=090422&logo=discourse" /></a>
 </p>
 
-Visit the full docs [here](https://arthur_dent.github.io/prefect-spark-on-k8s-operator) to see additional examples and the API reference.
+Visit the full docs [here](https://tardunge.github.io/prefect-spark-on-k8s-operator) to see additional examples and the API reference.
 
 Prefect integrations for orchestrating and monitoring apache spark jobs on kubernetes using spark-on-k8s-operator.
 
@@ -87,17 +87,17 @@ Block.load("BLOCK_NAME_PLACEHOLDER")
     prefect block register -m prefect_spark_on_k8s_operator
     ```
 
-A list of available blocks in `prefect-spark-on-k8s-operator` and their setup instructions can be found [here](https://arthur_dent.github.io/prefect-spark-on-k8s-operator/blocks_catalog).
+A list of available blocks in `prefect-spark-on-k8s-operator` and their setup instructions can be found [here](https://tardunge.github.io/prefect-spark-on-k8s-operator/blocks_catalog).
 
 --->
 
 ### Feedback
 
-If you encounter any bugs while using `prefect-spark-on-k8s-operator`, feel free to open an issue in the [prefect-spark-on-k8s-operator](https://github.com/arthur_dent/prefect-spark-on-k8s-operator) repository.
+If you encounter any bugs while using `prefect-spark-on-k8s-operator`, feel free to open an issue in the [prefect-spark-on-k8s-operator](https://github.com/tardunge/prefect-spark-on-k8s-operator) repository.
 
 If you have any questions or issues while using `prefect-spark-on-k8s-operator`, you can find help in either the [Prefect Discourse forum](https://discourse.prefect.io/) or the [Prefect Slack community](https://prefect.io/slack).
 
-Feel free to star or watch [`prefect-spark-on-k8s-operator`](https://github.com/arthur_dent/prefect-spark-on-k8s-operator) for updates too!
+Feel free to star or watch [`prefect-spark-on-k8s-operator`](https://github.com/tardunge/prefect-spark-on-k8s-operator) for updates too!
 
 ### Contributing
 
@@ -113,7 +113,7 @@ pip install -e ".[dev]"
 ```
 4. Make desired changes
 5. Add tests
-6. Insert an entry to [CHANGELOG.md](https://github.com/arthur_dent/prefect-spark-on-k8s-operator/blob/main/CHANGELOG.md)
+6. Insert an entry to [CHANGELOG.md](https://github.com/tardunge/prefect-spark-on-k8s-operator/blob/main/CHANGELOG.md)
 7. Install `pre-commit` to perform quality checks prior to commit:
 ```
 pre-commit install

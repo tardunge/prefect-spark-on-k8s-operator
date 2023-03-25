@@ -13,12 +13,13 @@ with open("README.md") as readme_file:
 
 setup(
     name="prefect-spark-on-k8s-operator",
-    description="Prefect integrations for orchestrating and monitoring apache spark jobs on kubernetes using spark-on-k8s-operator.",
+    description=
+    "Prefect integrations for orchestrating and monitoring apache spark jobs on kubernetes using spark-on-k8s-operator.",
     license="Apache License 2.0",
     author="Manoj Babu Katragadda",
     author_email="manojbabuiit@gmail.com",
     keywords="prefect",
-    url="https://github.com/arthur_dent/prefect-spark-on-k8s-operator",
+    url="https://github.com/tardunge/prefect-spark-on-k8s-operator",
     long_description=readme,
     long_description_content_type="text/markdown",
     version=versioneer.get_version(),
