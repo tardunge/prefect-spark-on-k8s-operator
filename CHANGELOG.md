@@ -25,4 +25,4 @@ Released on April 1st, 2024.
 
 ### Added
 
-- Initial implementation of spark-on-k8s-operator integration with prefect. - [#1](https://github.com/tardunge/prefect-spark-on-k8s-operator/pull/2)
+- Initial implementation of spark-on-k8s-operator integration with prefect. - [#2](https://github.com/tardunge/prefect-spark-on-k8s-operator/pull/2)
