@@ -1,0 +1,43 @@
+apiVersion: sparkoperator.k8s.io/v1beta2
+kind: SparkApplication
+metadata:
+  creationTimestamp: "2023-03-26T10:10:35Z"
+  generation: 1
+  name: spark-pi-965y
+  namespace: spark-operator
+  resourceVersion: "221560"
+  uid: 81cca280-4c22-4521-bf37-d34ee3ef53ff
+spec:
+  driver:
+    cores: 1
+    labels:
+      version: 3.2.2
+    memory: 512m
+    serviceAccount: spark-on-k8s-spark
+    volumeMounts:
+    - mountPath: /tmp
+      name: test-volume
+  executor:
+    cores: 1
+    instances: 1
+    labels:
+      version: 3.2.2
+    memory: 512m
+    volumeMounts:
+    - mountPath: /tmp
+      name: test-volume
+  image: apache/spark:v3.2.2
+  imagePullPolicy: Always
+  mainApplicationFile: local:///opt/spark/examples/jars/spark-examples_2.12-3.2.1.jar
+  mainClass: org.apache.spark.examples.SparkPi
+  mode: cluster
+  restartPolicy:
+    type: Never
+  sparkVersion: 3.2.2
+  timeToLiveSeconds: 10
+  type: Scala
+  volumes:
+  - hostPath:
+      path: /tmp
+      type: Directory
+    name: test-volume

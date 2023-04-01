@@ -1,26 +1,56 @@
-"""This is an example flows module"""
-from prefect import flow
+"""
+    A module to define flows interacting with spark-on-k8s-operator
+    resources created in Kubernetes.
+"""
+from typing import Any, Dict
 
-from prefect_spark_on_k8s_operator.blocks import Sparkonk8soperatorBlock
-from prefect_spark_on_k8s_operator.tasks import (
-    goodbye_prefect_spark_on_k8s_operator,
-    hello_prefect_spark_on_k8s_operator,
-)
+from prefect import flow, task
+
+from prefect_spark_on_k8s_operator.app import SparkApplication
 
 
 @flow
-def hello_and_goodbye():
+async def run_spark_application(
+    spark_application: SparkApplication,
+) -> Dict[str, Any]:
+    """Flow for running a spark application using spark-on-k8s-operator.
+
+    Args:
+        spark_application: The `SparkApplication` block that specifies the
+            application run params.
+
+    Returns:
+        The a dict of logs from driver pod after the application reached a
+            terminal state which can be COMPLETED, FAILED, UNKNOWN
+            (for `time_out seconds`).
+
+    Raises:
+        RuntimeError: If the created spark application attains a failed/unknown status.
+
+    Example:
+
+        ```python
+        import asyncio
+
+        from prefect_kubernetes.credentials import KubernetesCredentials
+        from prefect_spark_on_k8s_operator import (
+            SparkApplication,
+            run_spark_application,
+        )
+
+        app = SparkApplication.from_yaml_file(
+            credentials=KubernetesCredentials.load("k8s-creds"),
+            manifest_path="path/to/job.yaml",
+        )
+
+
+        if __name__ == "__main__":
+            # run the flow
+            asyncio.run(run_spark_application(app))
+        ```
     """
-    Sample flow that says hello and goodbye!
-    """
-    Sparkonk8soperatorBlock.seed_value_for_example()
-    block = Sparkonk8soperatorBlock.load("sample-block")
+    spark_application_run = await task(spark_application.trigger.aio)(spark_application)
 
-    print(hello_prefect_spark_on_k8s_operator())
-    print(f"The block's value: {block.value}")
-    print(goodbye_prefect_spark_on_k8s_operator())
-    return "Done"
+    await task(spark_application_run.wait_for_completion.aio)(spark_application_run)
 
-
-if __name__ == "__main__":
-    hello_and_goodbye()
+    return await task(spark_application_run.fetch_result.aio)(spark_application_run)
