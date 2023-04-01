@@ -22,18 +22,12 @@ Visit the full docs [here](https://tardunge.github.io/prefect-spark-on-k8s-opera
 
 Prefect integrations for orchestrating and monitoring apache spark jobs on kubernetes using spark-on-k8s-operator.
 
+## Welcome!
 
-<!--- ### Add a real-world example of how to use this Collection here
+`prefect-spark-on-k8s-operator` is a collection of Prefect flows enabling orchestration, observation and management of `SparkApplication` custom kubernetes resources defined according to spark-on-k8s-operator CRD v1Beta2 API Spec.
 
-Offer some motivation on why this helps.
+Jump to [examples](#example-usage).
 
-After installing `prefect-spark-on-k8s-operator` and [saving the credentials](#saving-credentials-to-block), you can easily use it within your flows to help you achieve the aforementioned benefits!
-
-```python
-from prefect import flow, get_run_logger
-```
-
---->
 
 ## Resources
 
@@ -41,6 +35,12 @@ For more tips on how to use tasks and flows in a Collection, check out [Using Co
 
 ### Installation
 
+!!! warning
+    This integration requires [prefect-kubernetes](https://prefecthq.github.io/prefect-kubernetes/) custom objects api which is [merged](https://github.com/PrefectHQ/prefect-kubernetes/pull/45) but not yet released.<br/>
+    This is required to apply spark-on-k8s-operator crd `SparkApplication` into kubernetes cluster.
+  
+  
+Once you have the `prefect-kubernetes` integration. You need to configure the kubernetes credentials as per `prefect-kubernetes` documentation.<br />
 Install `prefect-spark-on-k8s-operator` with `pip`:
 
 ```bash
@@ -51,47 +51,33 @@ Requires an installation of Python 3.7+.
 
 We recommend using a Python virtual environment manager such as pipenv, conda or virtualenv.
 
-These tasks are designed to work with Prefect 2.0. For more information about how to use Prefect, please refer to the [Prefect documentation](https://docs.prefect.io/).
+These flows are designed to work with Prefect 2.0. For more information about how to use Prefect, please refer to the [Prefect documentation](https://docs.prefect.io/).
 
-<!--- ### Saving credentials to block
+### Example Usage
 
-Note, to use the `load` method on Blocks, you must already have a block document [saved through code](https://docs.prefect.io/concepts/blocks/#saving-blocks) or [saved through the UI](https://docs.prefect.io/ui/blocks/).
-
-Below is a walkthrough on saving block documents through code.
-
-1. Head over to <SERVICE_URL>.
-2. Login to your <SERVICE> account.
-3. Click "+ Create new secret key".
-4. Copy the generated API key.
-5. Create a short script, replacing the placeholders (or do so in the UI).
+#### Specify and run a SparkApplication from a yaml file
 
 ```python
-from prefect_spark_on_k8s_operator import Block
-Block(api_key="API_KEY_PLACEHOLDER").save("BLOCK_NAME_PLACEHOLDER")
+import asyncio
+
+from prefect_kubernetes.credentials import KubernetesCredentials
+from prefect_spark_on_k8s_operator import (
+    SparkApplication,
+    run_spark_application, # this is a flow
+)
+
+app = SparkApplication.from_yaml_file(
+    credentials=KubernetesCredentials.load("k8s-creds"),
+    manifest_path="path/to/spark_application.yaml",
+)
+
+
+if __name__ == "__main__":
+    # run the flow
+    asyncio.run(run_spark_application(app))
 ```
 
-Congrats! You can now easily load the saved block, which holds your credentials:
-
-```python
-from prefect_spark_on_k8s_operator import Block
-Block.load("BLOCK_NAME_PLACEHOLDER")
-```
-
-!!! info "Registering blocks"
-
-    Register blocks in this module to
-    [view and edit them](https://docs.prefect.io/ui/blocks/)
-    on Prefect Cloud:
-
-    ```bash
-    prefect block register -m prefect_spark_on_k8s_operator
-    ```
-
-A list of available blocks in `prefect-spark-on-k8s-operator` and their setup instructions can be found [here](https://tardunge.github.io/prefect-spark-on-k8s-operator/blocks_catalog).
-
---->
-
-### Feedback
+## Feedback
 
 If you encounter any bugs while using `prefect-spark-on-k8s-operator`, feel free to open an issue in the [prefect-spark-on-k8s-operator](https://github.com/tardunge/prefect-spark-on-k8s-operator) repository.
 
@@ -99,7 +85,7 @@ If you have any questions or issues while using `prefect-spark-on-k8s-operator`,
 
 Feel free to star or watch [`prefect-spark-on-k8s-operator`](https://github.com/tardunge/prefect-spark-on-k8s-operator) for updates too!
 
-### Contributing
+## Contributing
 
 If you'd like to help contribute to fix an issue or add a feature to `prefect-spark-on-k8s-operator`, please [propose changes through a pull request from a fork of the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 

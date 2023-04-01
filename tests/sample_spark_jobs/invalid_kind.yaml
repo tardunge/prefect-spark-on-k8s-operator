@@ -1,0 +1,36 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: Spark
+metadata:
+  name: spark-pi
+  namespace: spark-operator
+spec:
+  type: Scala
+  mode: cluster
+  image: "apache/spark:v3.2.2"
+  imagePullPolicy: Always
+  mainClass: org.apache.spark.examples.SparkPi
+  mainApplicationFile: "local:///opt/spark/examples/jars/spark-examples_2.12-3.2.2.jar"
+  sparkVersion: "3.2.2"
+  volumes:
+    - name: "test-volume"
+      hostPath:
+        path: "/tmp"
+        type: Directory
+  driver:
+    cores: 1
+    memory: "512m"
+    labels:
+      version: 3.2.2
+    serviceAccount: spark-on-k8s-spark
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+    labels:
+      version: 3.2.2
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
