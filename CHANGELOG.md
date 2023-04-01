@@ -19,12 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
-<!---
 ## 0.1.0
 
-Released on ????? ?th, 20??.
--->
+Released on April 1st, 2024.
 
 ### Added
 
-- `run_spark_application` flow - [#1](https://github.com/tardunge/prefect-spark-on-k8s-operator/pull/1)
+- Initial implementation of spark-on-k8s-operator integration with prefect. - [#1](https://github.com/tardunge/prefect-spark-on-k8s-operator/pull/2)
