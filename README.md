@@ -35,12 +35,7 @@ For more tips on how to use tasks and flows in a Collection, check out [Using Co
 
 ### Installation
 
-!!! warning
-    This integration requires [prefect-kubernetes](https://prefecthq.github.io/prefect-kubernetes/) custom objects api which is [merged](https://github.com/PrefectHQ/prefect-kubernetes/pull/45) but not yet released.<br/>
-    This is required to apply spark-on-k8s-operator crd `SparkApplication` into kubernetes cluster.
-  
-  
-Once you have the `prefect-kubernetes` integration. You need to configure the kubernetes credentials as per `prefect-kubernetes` documentation.<br />
+You need to configure the kubernetes credentials as per `prefect-kubernetes` documentation.<br />
 Install `prefect-spark-on-k8s-operator` with `pip`:
 
 ```bash

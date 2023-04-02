@@ -1,2 +1,2 @@
 prefect>=2.0.0
-prefect-kubernetes @ git+https://github.com/PrefectHQ/prefect-kubernetes.git@6f7c6ec#egg=prefect-kubernetes
+prefect-kubernetes>=0.2.3

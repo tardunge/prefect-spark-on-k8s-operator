@@ -19,6 +19,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## 0.1.1
+
+Released on April 2nd, 2024.
+
+### Changed
+
+- update requirements.txt to prefect-kubernetes>=0.2.3
+- update README.md
+
 ## 0.1.0
 
 Released on April 1st, 2024.

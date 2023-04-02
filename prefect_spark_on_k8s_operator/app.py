@@ -264,6 +264,9 @@ class SparkApplicationRun(JobRun[Dict[str, Any]]):
             Kubernetes node hosting the driver pod crashes. If the
             state doesn't change for `timeout_seconds`, then the application
             is terminated.
+        For more information on the spark-on-k8s-operator state-machine please
+        refer [here](https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/
+        blob/master/pkg/controller/sparkapplication/controller.go#L485)
 
         Raises:
             RuntimeError: If the application fails or in unknown state
