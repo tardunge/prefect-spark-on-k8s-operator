@@ -109,7 +109,7 @@ async def test_wait_for_completion_failed(
     )
 
     app_run = await spark_app.trigger()
-    
+
     await app_run.wait_for_completion()
 
     assert app_run.application_logs.get("spark-pi-khha-driver") == "test-logs"

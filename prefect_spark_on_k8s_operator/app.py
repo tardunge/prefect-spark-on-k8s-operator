@@ -370,7 +370,6 @@ class SparkApplicationRun(JobRun[Dict[str, Any]]):
         if self._spark_application.delete_after_completion or self._timed_out:
             self._cleanup_status = await self._cleanup()
 
-            
     @sync_compatible
     async def fetch_result(self) -> Dict[str, Any]:
         """Returns the logs from driver pod when:
@@ -382,7 +381,7 @@ class SparkApplicationRun(JobRun[Dict[str, Any]]):
 
         Raises:
             RuntimeError: If the application fails or in unknown state
-                for timeout_seconds.
+              for timeout_seconds.
         """
         for pod in self.application_logs:
             self.logger.info(f"logs for pod {pod}")
