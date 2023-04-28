@@ -117,7 +117,7 @@ class SparkApplication(JobBlock):
 
     _block_type_name = "Spark On K8s Operator"
     _block_type_slug = "spark-on-k8s-operator"
-    _logo_url = "https://images.ctfassets.net/zscdif0zqppk/35vNcprr3MmIlkrKxxCiah/1d720b4b50dfa8876198cf21730cf123/Kubernetes_logo_without_workmark.svg.png?h=250"  # noqa: E501
+    _logo_url = "https://docs.prefect.io/img/collections/spark-on-kubernetes.png?h=250"  # noqa: E501
     _documentation_url = "https://tardunge.github.io/prefect-spark-on-k8s-operator/app/#prefect_spark_on_k8s_operator.app.SparkApplication"  # noqa
     name: str = ""
 
@@ -267,10 +267,6 @@ class SparkApplicationRun(JobRun[Dict[str, Any]]):
         For more information on the spark-on-k8s-operator state-machine please
         refer [here](https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/
         blob/master/pkg/controller/sparkapplication/controller.go#L485)
-
-        Raises:
-            RuntimeError: If the application fails or in unknown state
-                for timeout_seconds.
         """
         self.application_logs = {}
 
@@ -374,13 +370,6 @@ class SparkApplicationRun(JobRun[Dict[str, Any]]):
         if self._spark_application.delete_after_completion or self._timed_out:
             self._cleanup_status = await self._cleanup()
 
-        if self._terminal_state != constants.COMPLETED:
-            raise RuntimeError(
-                "The SparkApplication run is not in a completed state,"
-                f" last observed state was {self._terminal_state} - "
-                f"possible errors: {self._error_msg}"
-            )
-
     @sync_compatible
     async def fetch_result(self) -> Dict[str, Any]:
         """Returns the logs from driver pod when:
@@ -389,10 +378,17 @@ class SparkApplicationRun(JobRun[Dict[str, Any]]):
 
         Returns:
             A dict containing the driver pod name and its main container logs.
+
+        Raises:
+            RuntimeError: If the application fails or in unknown state
+              for timeout_seconds.
         """
-        self.logger.info(f"logs: {self.application_logs}")
+        for pod in self.application_logs:
+            self.logger.info(f"logs for pod {pod}")
+            self.logger.info(f"{self.application_logs[pod]}")
+        # self.logger.info(f"logs: {self.application_logs}")
         if self._terminal_state != constants.COMPLETED:
-            raise ValueError(
+            raise RuntimeError(
                 "The SparkApplication run is not in a completed state,"
                 f" last observed state was {self._terminal_state} - "
                 f"possible errors: {self._error_msg}"
