@@ -124,12 +124,12 @@ def mock_get_namespaced_custom_object_status_failed(
     monkeypatch,
     failed_spark_app,
 ):
-    mock_completed_job = AsyncMock(return_value=failed_spark_app)
+    mock_failed_job = AsyncMock(return_value=failed_spark_app)
     monkeypatch.setattr(
         "prefect_kubernetes.custom_objects.get_namespaced_custom_object_status.fn",
-        mock_completed_job,
+        mock_failed_job,
     )
-    return mock_completed_job
+    return mock_failed_job
 
 
 @pytest.fixture

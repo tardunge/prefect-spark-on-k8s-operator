@@ -19,9 +19,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## 0.1.2
+
+Released on April 28th, 2023.
+
+### Fixed
+
+- fixed RuntimeError on wait_for_completion which will be raised only on fetch_results but not for wait_for_completion.
+- fix formatting of logger in fetch_results.
+- changed logo url.
+
 ## 0.1.1
 
-Released on April 2nd, 2024.
+Released on April 2nd, 2023.
 
 ### Changed
 
@@ -30,7 +40,7 @@ Released on April 2nd, 2024.
 
 ## 0.1.0
 
-Released on April 1st, 2024.
+Released on April 1st, 2023.
 
 ### Added
 

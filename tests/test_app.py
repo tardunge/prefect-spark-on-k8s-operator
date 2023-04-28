@@ -109,14 +109,14 @@ async def test_wait_for_completion_failed(
     )
 
     app_run = await spark_app.trigger()
-    with pytest.raises(RuntimeError):
-        await app_run.wait_for_completion()
+    
+    await app_run.wait_for_completion()
 
     assert app_run.application_logs.get("spark-pi-khha-driver") == "test-logs"
     assert not app_run._completed
     assert app_run._terminal_state == constants.FAILED
 
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         await app_run.fetch_result()
 
 
@@ -156,14 +156,13 @@ async def test_wait_for_completion_unknown(
     )
     app_run = await spark_app.trigger()
 
-    with pytest.raises(RuntimeError):
-        await app_run.wait_for_completion()
+    await app_run.wait_for_completion()
 
     assert not app_run._completed
     assert app_run._terminal_state == constants.UNKNOWN
     assert len(app_run.application_logs) == 0
 
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         await app_run.fetch_result()
 
 
